@@ -174,11 +174,13 @@ proxy:
     rollingUpdate:
   # service relates to the proxy-public service
   service:
-    type: LoadBalancer
+    type: LoadBalancer 
     labels: {}
-    annotations: {}
+    annotations: 
+      service.beta.kubernetes.io/aws-load-balancer-type: nlb
+      service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
     nodePorts:
-      http:
+      http: 32001
       https:
     disableHttpPort: false
     extraPorts: []
@@ -621,7 +623,7 @@ prePuller:
 ingress:
   enabled: false
   annotations: {}
-  ingressClassName:
+  ingressClassName: 
   hosts: []
   pathSuffix:
   pathType: Prefix
