@@ -77,8 +77,8 @@ hub:
   extraVolumes: []
   extraVolumeMounts: []
   image:
-    name: jupyterhub/k8s-hub
-    tag: "set-by-chartpress"
+    name: docker.apple.com/aml-jupyter/k8s-hubhub
+    tag: "1.1.3-n680.h7d4a6699"
     pullPolicy:
     pullSecrets: []
   resources: {}
@@ -290,8 +290,8 @@ proxy:
       runAsGroup: 65534 # nobody group
       allowPrivilegeEscalation: false
     image:
-      name: jupyterhub/k8s-secret-sync
-      tag: "set-by-chartpress"
+      name: docker.apple.com/aml-jupyter/k8s-hubsecret-sync
+      tag: "1.1.3-n550.had18a956"
       pullPolicy:
       pullSecrets: []
     resources: {}
@@ -330,8 +330,8 @@ singleuser:
     preferred: []
   networkTools:
     image:
-      name: jupyterhub/k8s-network-tools
-      tag: "set-by-chartpress"
+      name: docker.apple.com/aml-jupyter/k8s-hubnetwork-tools
+      tag: "1.1.3-n550.had18a956"
       pullPolicy:
       pullSecrets: []
     resources: {}
@@ -380,8 +380,8 @@ singleuser:
       volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
   image:
-    name: jupyterhub/k8s-singleuser-sample
-    tag: "set-by-chartpress"
+    name: docker.apple.com/aml-jupyter/k8s-hubsingleuser-sample
+    tag: "1.1.3-n660.h1dd026a3"
     pullPolicy:
     pullSecrets: []
   startTimeout: 300
@@ -582,8 +582,8 @@ prePuller:
     pullOnlyOnChanges: true
     # image and the configuration below relates to the hook-image-awaiter Job
     image:
-      name: jupyterhub/k8s-image-awaiter
-      tag: "set-by-chartpress"
+      name: docker.apple.com/aml-jupyter/k8s-hubimage-awaiter
+      tag: "1.1.3-n550.had18a956"
       pullPolicy:
       pullSecrets: []
     containerSecurityContext:

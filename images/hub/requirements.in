@@ -37,3 +37,8 @@ jupyterhub-idle-culler
 
 # py-spy is useful for profiling running hubs
 py-spy
+
+numpy==1.23.0
+pandas==1.4.3
+scipy==1.1.0
+matplotlib==2.2.2
