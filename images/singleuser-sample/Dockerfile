@@ -13,7 +13,15 @@ RUN apt-get update \
         git \
         iputils-ping \
  && rm -rf /var/lib/apt/lists/*
+
+
+# Apple root cas, pip conf
+COPY trust_apple_corp_root_cas.sh /tmp/
+RUN /tmp/trust_apple_corp_root_cas.sh
+
 USER $NB_USER
+COPY pip.conf /$NB_USER/.pip/pip.conf 
+
 
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir \

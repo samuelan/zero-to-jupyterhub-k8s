@@ -78,7 +78,7 @@ hub:
   extraVolumeMounts: []
   image:
     name: docker.apple.com/aml-jupyter/k8s-hubhub
-    tag: "1.1.3-n680.h7d4a6699"
+    tag: "1.1.3-n684.h40ec973b"
     pullPolicy:
     pullSecrets: []
   resources: {}
@@ -176,9 +176,11 @@ proxy:
   service:
     type: LoadBalancer
     labels: {}
-    annotations: {}
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: nlb
+      service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
     nodePorts:
-      http:
+      http: 32001
       https:
     disableHttpPort: false
     extraPorts: []
@@ -291,7 +293,7 @@ proxy:
       allowPrivilegeEscalation: false
     image:
       name: docker.apple.com/aml-jupyter/k8s-hubsecret-sync
-      tag: "1.1.3-n550.had18a956"
+      tag: "1.1.3-n680.h9bcb8bdc"
       pullPolicy:
       pullSecrets: []
     resources: {}
@@ -331,7 +333,7 @@ singleuser:
   networkTools:
     image:
       name: docker.apple.com/aml-jupyter/k8s-hubnetwork-tools
-      tag: "1.1.3-n550.had18a956"
+      tag: "1.1.3-n680.h9bcb8bdc"
       pullPolicy:
       pullSecrets: []
     resources: {}
@@ -381,7 +383,7 @@ singleuser:
       storageAccessModes: [ReadWriteOnce]
   image:
     name: docker.apple.com/aml-jupyter/k8s-hubsingleuser-sample
-    tag: "1.1.3-n660.h1dd026a3"
+    tag: "1.1.3-n688.h5d06881f"
     pullPolicy:
     pullSecrets: []
   startTimeout: 300
@@ -583,7 +585,7 @@ prePuller:
     # image and the configuration below relates to the hook-image-awaiter Job
     image:
       name: docker.apple.com/aml-jupyter/k8s-hubimage-awaiter
-      tag: "1.1.3-n550.had18a956"
+      tag: "1.1.3-n680.h9bcb8bdc"
       pullPolicy:
       pullSecrets: []
     containerSecurityContext:

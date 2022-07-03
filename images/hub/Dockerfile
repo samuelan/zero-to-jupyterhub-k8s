@@ -6,6 +6,11 @@ FROM python:3.9-bullseye as build-stage
 
 WORKDIR /build-stage
 
+# Apple root cas, pip conf
+COPY trust_apple_corp_root_cas.sh /tmp/
+COPY pip.conf /root/.pip/pip.conf 
+RUN /tmp/trust_apple_corp_root_cas.sh
+
 # Build wheels for packages that require gcc or other build dependencies and
 # lack wheels either for amd64 or aarch64.
 #
@@ -64,6 +69,12 @@ RUN if [ "$(uname -m)" = x86_64 ]; then ARCH=amd64; fi; \
     if [ "$(uname -m)" = aarch64 ]; then ARCH=arm64; fi; \
     curl -sSLo /tini "https://github.com/krallin/tini/releases/download/v0.19.0/tini-$ARCH" \
  && chmod +x /tini
+
+# Apple root cas, pip conf
+COPY trust_apple_corp_root_cas.sh /tmp/
+COPY pip.conf /root/.pip/pip.conf 
+RUN /tmp/trust_apple_corp_root_cas.sh
+
 
 COPY --from=build-stage /build-stage/*.whl /tmp/pre-built-wheels/
 COPY requirements.txt /tmp/requirements.txt
