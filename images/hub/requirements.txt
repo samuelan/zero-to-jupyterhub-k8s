@@ -99,7 +99,7 @@ markupsafe==2.0.1
     # via
     #   jinja2
     #   mako
-mwoauth==0.3.7
+mwoauth==0.3.8
     # via -r requirements.in
 nullauthenticator==1.0.0
     # via -r requirements.in
